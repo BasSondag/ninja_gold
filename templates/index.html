@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    	<meta charset="UTF-8">
+ 		<title>Ninja Gold</title>
+ 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+ 		<script type="text/javascript" src='{{ url_for('static', filename='script/script.js') }}'></script>
+    </head>
+ 	<body>
+	 	<div id="container">
+	 		<h1>Ninja Gold</h1>
+	 		<h4>your gold:</h4>
+	 		<div id="score">{{session['score']}}</div>
+	 		<div class="location" id="farm">
+	 			<h2>Farm</h2>
+	 			<p>(earns 10-20 golds)</p>
+	 			<form action="/process_money" method="POST">
+	 				<input type="hidden" name="action" value="farm"></input>
+	 				<input type="submit" name="farmgold" value="Find Gold"></input>
+	 			</form>
+	 		</div>
+	 		<div class="location" id="cave">
+	 			<h2>Cave</h2>
+	 			<p>(earns 5-10 golds)</p>
+	 			<form action="/process_money" method="POST">
+	 				<input type="hidden" name="action" value="cave"></input>
+	 				<input type="submit" name="cavegold" value="Find Gold"></input>
+	 			</form>
+	 		</div>
+	 		<div class="location" id="house">
+	 			<h2>House</h2>
+	 			<p>(earns 2-5 golds)</p>
+	 			<form action="/process_money" method="POST">
+	 				<input type="hidden" name="action" value="house"></input>
+	 				<input type="submit" name="housegold" value="Find Gold"></input>
+	 			</form>
+	 		</div>
+	 		<div class="location" id="casino">
+	 			<h2>Casino</h2>
+	 			<p>(earns 0-50 golds)</p>
+	 			<form action="/process_money" method="POST">
+	 				<input type="hidden" name="action" value="casino"></input>
+	 				<input type="submit" name="casinogold" value="Find Gold"></input>
+	 			</form>
+	 		</div>
+	 		<h4>Activities:</h4>
+	 		<div id='activities'>
+	 			{% for x in session['act'] %}
+	 				<p>{{x}}</p>
+	 			{%endfor%}
+	 		</div>
+
+	 		<form action="/reset" method="POST">
+				<input id="reload"type="submit" name="reset" value="reset"></input>
+			</form>
+		</div>
+
+
+ 	</body>
+</html> 	
+
+<!-- <textarea name="log" id="activities" rows='10' cols'160'>{{session['act']}}</textarea> -->
